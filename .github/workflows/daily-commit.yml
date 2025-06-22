@@ -2,8 +2,8 @@ name: Daily Commit Workflow
 
 on:
   schedule:
-    - cron: '30 5 * * *'  # Runs daily at 5:30 AM UTC
-  workflow_dispatch:       # Optional: lets you run it manually
+    - cron: '30 5 * * *'
+  workflow_dispatch:
 
 jobs:
   daily-commit:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}  # Use PAT to enable push
 
       - name: "Add commit for 23f2004818@ds.study.iitm.ac.in"
         run: |
